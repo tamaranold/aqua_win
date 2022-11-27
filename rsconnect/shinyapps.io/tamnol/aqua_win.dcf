@@ -1,0 +1,13 @@
+name: aqua_win
+title: aqua_win
+username:
+account: tamnol
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7722084
+bundleId: 6559485
+url: https://tamnol.shinyapps.io/aqua_win/
+when: 1669566321.01959
+lastSyncTime: 1669566321.0196
+asMultiple: FALSE
+asStatic: FALSE
