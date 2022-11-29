@@ -4,14 +4,14 @@
 library(shiny)
 library(shinyMobile)
 library(magick)
-library(shinyFiles)
 library(tidyverse)
-library(OpenImageR)
-library(imager)
 library(png) 
 
 # standalone: https://github.com/electron/electron-quick-start
 # f7Gallery()
+
+# get modules
+
 
 # color
 #getF7Colors()
