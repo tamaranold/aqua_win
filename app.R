@@ -19,7 +19,7 @@ shinyApp(
   ui = f7Page(
     options = list(
       theme = "md",
-      dark = TRUE,
+      dark = FALSE,
       filled = TRUE,
       color = col_standard
     ), 
@@ -56,8 +56,9 @@ shinyApp(
             
             uiOutput("start"),
 
-            imageOutput("imgCut")
-            
+            lapply(1:36, function(x) imageOutput(paste0("imgCut", x),
+                                                 width = "auto",
+                                                 height = "auto"))
           )
         )
       )
@@ -129,36 +130,48 @@ shinyApp(
                          round(mat$width_start[i],0), "+", round(mat$height_start[i],0))
         
         #  print(window)
-        tokens[[paste0("A", i)]] <- image_crop(rawImg, window)
+        tokens[[paste0("Cut", i)]] <- image_crop(rawImg, window)
         
       }  
       
     })
     
+    outf <- reactiveValues()
+    
+    observeEvent(input[["start"]], { 
+      
+      dir <- tempdir()
+      
+      lapply(1:36, function(x){
+        outf[[paste0("n", x)]] <- tempfile(fileext = ".png",
+                                           tmpdir = dir)
+        
+        pic <- tokens[[paste0("Cut", x)]]
+        
+        image_write(pic, path = outf[[paste0("n", x)]], format = "png")
+        
+      })
+      
+      })
+    
+    
+    # render tiles for inspection
     observeEvent(input[["start"]], {
       
-      outfile <- tempfile(fileext = ".png")
+      lapply(1:36, function(x){
+        output[[paste0("imgCut", x)]] <- renderImage({
+          
+         list(
+            src = outf[[paste0("n", x)]],
+            contentType = "image/png"
+          )},
+          deleteFile = FALSE
+        )})
       
-      pic <- tokens[["A8"]]
-      
-      image_write(pic, path = outfile, format = "png")
- 
-      
-      output$imgCut <- renderImage({
-        
-        width  <- session$clientData$output_plaatje_width
-        height <- session$clientData$output_plaatje_height
-        
-        list(
-          src = outfile,
-          width = width,
-          height = height,
-          contentType = "image/png"
-        )},
-        deleteFile = FALSE
-      )
-    })
     
+
+        
+      })
     
     
   }  
