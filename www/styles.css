@@ -1,0 +1,19 @@
+/* Using a <background-color> */
+
+:root, :root.theme-dark, :root .theme-dark {
+
+}
+.md {
+  
+  --f7-panel-backdrop-bg-color: rgba(0, 0, 0, 0.3);
+  
+}
+
+.md. .dark {
+  
+  --f7-page-bg-color: #ff1493;
+}
+
+body {
+  background-color: #FFC0CB;
+}
