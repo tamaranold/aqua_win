@@ -5,3 +5,9 @@ As an avid board gamer, I love planning and deliberating moves. But counting poi
 In Auqalin, two players place colorful underwater animals on a common game board to end up with the largest swarms. There are 36 tokens, six animals in six different colors. One player is trying to place the same animals next to each other, the other is making groups in the same color. At the end, someone has to count the swarm sizes. And this is where this project begins. 
 
 In the **auqa_model** project, image recognition models are trained to classify each token on the board by color and animal. In the **aqua_win** project, these algorithms are used inside an app to calculate the scores and determine the winner. 
+
+# key functions and packages 
+* **shinyMobile**: developing shinyApps for smartphones
+* **magick**: cut image 
+* **keras**: high-level API for image recognition
+* **raster::clump** detect clumps (patches) of connected cells
